@@ -50,6 +50,40 @@ const isDraw = (board) => {
   return countPlayedTokens(board) === board.length ** 2 && !checkForWinner(board);
 };
 
+const checkForWinner = (board) => {
+  // rows
+  for (let i = 0; i < board.length; i += 1) {
+    if (board[i][0].value !== '' && board[i][0].value === board[i][1].value
+      && board[i][1].value === board[i][2].value) {
+      return board[i][0].value;
+    }
+  }
+
+  // cols
+  for (let i = 0; i < board.length; i += 1) {
+    if (board[0][i].value !== '' && board[0][i].value === board[1][i].value
+      && board[1][i].value === board[2][i].value) {
+      return board[0][i].value;
+    }
+  }
+
+  // major diag
+  if (board[1][1].value !== ''
+    && board[0][0].value === board[1][1].value
+    && board[1][1].value === board[2][2].value) {
+    return board[1][1].value;
+  }
+
+  // major diag
+  if (board[1][1].value !== ''
+    && board[0][2].value === board[1][1].value
+    && board[1][1].value === board[2][0].value) {
+    return board[1][1].value;
+  }
+
+  return null;
+};
+
 const WINNING_MOVES = [
   [[0, 0], [0, 1], [0, 2]],
   [[1, 0], [1, 1], [1, 2]],
@@ -61,29 +95,29 @@ const WINNING_MOVES = [
   [[0, 2], [1, 1], [2, 0]],
 ];
 
-const checkForWinner = (board) => {
-  for (const path of WINNING_MOVES) {
-    const first = path[0];
-    const token = board[first[0]][first[1]];
-    if (token.value === '') {
-      continue;
-    }
+// const checkForWinner = (board) => {
+//   for (const path of WINNING_MOVES) {
+//     const first = path[0];
+//     const token = board[first[0]][first[1]];
+//     if (token.value === '') {
+//       continue;
+//     }
 
-    let count = 0;
-    for (const cell of path) {
-      const compare = board[cell[0]][cell[1]];
-      if (compare.value === token.value) {
-        count += 1;
-      }
-    }
+//     let count = 0;
+//     for (const cell of path) {
+//       const compare = board[cell[0]][cell[1]];
+//       if (compare.value === token.value) {
+//         count += 1;
+//       }
+//     }
 
-    if (count === path.length) {
-      return token.value;
-    }
-  }
+//     if (count === path.length) {
+//       return token.value;
+//     }
+//   }
 
-  return null;
-};
+//   return null;
+// };
 
 // const checkForWinner = (board) => {
 //   // Complete in Wave 3
