@@ -26,7 +26,7 @@ const generateSquares = () => {
 };
 
 const getTokenForPlayer = player => {
-  return player === 0 ? 'X' : 'O';
+  return player === 0 ? PLAYER_1 : PLAYER_2;
 };
 
 const countPlayedTokens = (board) => {
