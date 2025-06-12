@@ -20,7 +20,7 @@ describe('Wave 1: Square', () => {
   });
 });
 
-describe.skip('Wave 2: Square', () => {
+describe('Wave 2: Square', () => {
   test('when clicked on it calls the callback function', async () => {
     const callback = vi.fn();
 
